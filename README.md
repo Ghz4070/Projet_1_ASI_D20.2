@@ -4,3 +4,4 @@
 - docker-compose up -d
 - docker-compose exec web bash
 - composer install
+- php bin/console database:schema:update --force
