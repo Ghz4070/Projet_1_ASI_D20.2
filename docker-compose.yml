@@ -24,7 +24,7 @@ services:
     ports:
       - "3307:3306"
     environment:
-      MYSQL_DATABASE: symfonyexam
+      MYSQL_DATABASE: symfonyprojet
       MYSQL_ROOT_PASSWORD: root
 
   phpmyadmin:
