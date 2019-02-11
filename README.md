@@ -5,5 +5,3 @@
 - docker-compose exec web bash
 - composer install
 - php bin/console database:schema:update --force
-
-- branche ilies, alex, raphael de crée
