@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class CreateAdminCommand extends Command
 {
-    protected static $defaultName = 'app:create-admin';
+    protected static $defaultName = 'app:create-conference';
 
     private $entityManager;
 

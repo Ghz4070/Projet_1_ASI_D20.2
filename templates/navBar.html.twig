@@ -1,7 +1,4 @@
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ea3d3d;">
-    {#<a class="navbar-brand" href="{{ path('home') }}">#}
-        {#<img src="/images/youtube_logo.png" width="45" height="30" class="d-inline-block align-top" alt="">#}
-    {#</a>#}
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
             aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -9,10 +6,12 @@
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav mx-auto">
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <li class="nav-item ml-3">
-                <a class="nav-link text-uppercase font-weight-bold text-expanded"
-                   href="{{ path('home') }}">profile</a>
-            </li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <li class="nav-item ml-3">
+                    <a class="nav-link text-uppercase font-weight-bold text-expanded"
+                       href="{{ path('conference') }}">conference</a>
+                </li>
+            {% endif %}
             <li class="nav-item ml-3">
                 <a class="nav-link text-uppercase font-weight-bold text-expanded"
                    href="{{ path('logout') }}">Deconnexion</a>
