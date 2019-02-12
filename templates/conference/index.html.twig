@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Creation conference{% endblock %}
+
+{% block body %}
+    <div class="container-fluid col-2 text-center mt-4">
+        {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_row(form.name, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(form.createdAt, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(form.description, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(form.valide, {'attr': {'class': 'form-control btn btn-warning'}}) }}
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
