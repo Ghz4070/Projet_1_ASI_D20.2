@@ -23,4 +23,4 @@ security:
                 target: /
     access_control:
         - { path: ^/conference, roles: ROLE_ADMIN }
-        - { path: ^/profile, roles: ROLE_USER }
+#        - { path: ^/profile, roles: ROLE_USER }

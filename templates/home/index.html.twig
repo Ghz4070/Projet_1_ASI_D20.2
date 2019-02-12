@@ -13,5 +13,11 @@
         <div class="form-group mt-2">
             <p>{{ conferences.description }}</p>
         </div>
+        {% if is_granted('ROLE_ADMIN') %}
+            <div class="form-group">
+                <a class="mr-3" href="{{ path('edit_conference', {'id': conferences.id}) }}">Modifier</a>
+                <a href="{{ path('remove_conference', {'id': conferences.id}) }}">Supprimer</a>
+            </div>
+        {% endif %}
     {% endfor %}
 {% endblock %}

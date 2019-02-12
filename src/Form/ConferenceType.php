@@ -15,7 +15,7 @@ class ConferenceType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('date', DateType::class, [
+            ->add('createdAt', DateType::class, [
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
             ])
