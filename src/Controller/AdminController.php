@@ -14,7 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/user", name="user")
+     * @Route("/admin/user", name="user")
      */
     public function findAllUser(UserRepository $userRepository)
     {
@@ -26,7 +26,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/user/{id}", name="userId")
+     * @Route("/admin/user/{id}", name="userId")
      */
     public function findUserById(User $user)
     {
@@ -36,7 +36,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/user/update/{id}", name="userUpdate")
+     * @Route("/admin/user/update/{id}", name="userUpdate")
      */
     public function updateUser(Request $request,User $user, EntityManagerInterface $entityManager)
     {
@@ -53,7 +53,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/user/delete/{id}", name="deleteUser")
+     * @Route("/admin/user/delete/{id}", name="deleteUser")
      * @ParamConverter("user", options={"mapping"={"id"="id"}})
      */
     public function deleteUser(User $user, EntityManagerInterface $entityManager){
