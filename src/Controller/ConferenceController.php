@@ -13,9 +13,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class ConferenceController extends AbstractController
 {
     /**
-     * @Route("/conference", name="conference")
+     * @Route("/admin/conference", name="conference")
      */
-    public function index(Request $request)
+    public function create(Request $request)
     {
         $conference = new Conference();
         $form = $this->createForm(ConferenceType::class, $conference);
@@ -34,7 +34,7 @@ class ConferenceController extends AbstractController
     }
 
     /**
-     * @Route("/conference/edit/{id}", name="edit_conference")
+     * @Route("/admin/conference/edit/{id}", name="edit_conference")
      */
     public function edit(Request $request, Conference $conference = null)
     {
@@ -57,7 +57,7 @@ class ConferenceController extends AbstractController
     }
 
     /**
-     * @Route("/conference/remove/{id}", name="remove_conference")
+     * @Route("/admin/conference/remove/{id}", name="remove_conference")
      * @ParamConverter("conference", options={"mapping"={"id"="id"}})
      */
     public function delete(EntityManagerInterface $entityManager, Conference $conference)
