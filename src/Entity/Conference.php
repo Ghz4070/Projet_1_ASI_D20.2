@@ -41,7 +41,7 @@ class Conference
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $Average;
+    private $average;
 
     public function __construct()
     {
@@ -122,12 +122,12 @@ class Conference
 
     public function getAverage(): ?int
     {
-        return $this->Average;
+        return $this->average;
     }
 
-    public function setAverage(?int $Average): self
+    public function setAverage(?int $average): self
     {
-        $this->Average = $Average;
+        $this->average = $average;
 
         return $this;
     }
