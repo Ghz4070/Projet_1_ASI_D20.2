@@ -1,7 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Symfony Original Project{% endblock %}
+{% block title %}home{% endblock %}
 
 {% block body %}
-
+    {% for conferences in conference %}
+        <div class="form-group mt-2">
+            <h1>{{ conferences.name }}</h1>
+        </div>
+        <div class="form-group mt-2">
+            <span>{{ conferences.createdAt.date }}</span>
+        </div>
+        <div class="form-group mt-2">
+            <p>{{ conferences.description }}</p>
+        </div>
+    {% endfor %}
 {% endblock %}

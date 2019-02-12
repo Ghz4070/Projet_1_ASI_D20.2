@@ -31,7 +31,7 @@ class Conference
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $date;
+    private $createdAt;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Vote", mappedBy="conference")
@@ -77,14 +77,14 @@ class Conference
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->date;
+        return $this->createdAt;
     }
 
-    public function setDate(?\DateTimeInterface $date): self
+    public function setCreatedAt(?\DateTimeInterface $createdAt): self
     {
-        $this->date = $date;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
