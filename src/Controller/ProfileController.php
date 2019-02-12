@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Form\ProfileUserType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ProfileController extends AbstractController
@@ -10,9 +13,17 @@ class ProfileController extends AbstractController
     /**
      * @Route("/profile", name="profile")
      */
-    public function editProfileUser()
+    public function editProfileUser(Request $request, EntityManagerInterface $entityManager)
     {
-
+        $user = $this->getUser();
+        $form = $this->createForm(ProfileUserType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($user);
+            $entityManager->flush();
+            $this->addFlash('success', 'Modification enregistrer !');
+            return $this->redirectToRoute('home');
+        }
         return $this->render('profile/editProfileUser.html.twig', [
             'controller_name' => 'ProfileController',
         ]);
