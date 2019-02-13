@@ -18,6 +18,8 @@ services:
 
   database:
     image: mysql:8.0
+    volumes_from:
+      - data
     volumes:
       - ./docker/mysqlconf:/etc/mysql/conf.d
       - ./docker/mysql:/var/lib/mysql
