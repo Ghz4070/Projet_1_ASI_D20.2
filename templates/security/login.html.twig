@@ -13,15 +13,15 @@
     <div>
         {{ form_start(form) }}
         <div>
-            {{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
-            {{ form_errors(form.email, {'attr': {'class': 'form-control'}}) }}
+            {{ form_row(form.email)}}
+            {{ form_errors(form.email) }}
         </div>
         <div>
-            {{ form_row(form.password, {'attr': {'class': 'form-control'}}) }}
-            {{ form_errors(form.password, {'attr': {'class': 'form-control'}}) }}
+            {{ form_row(form.password) }}
+            {{ form_errors(form.password) }}
         </div>
         <div>
-            {{ form_row(form.connect, {'attr': {'class': 'form-control btn btn-danger'}}) }}
+            {{ form_row(form.connect, {'attr': {'class': 'btn'}}) }}
         </div>
         {{ form_end(form) }}
     </div>

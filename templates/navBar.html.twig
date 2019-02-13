@@ -1,40 +1,76 @@
-<nav>
-    <div>
-        <ul>
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            {% if is_granted('ROLE_ADMIN') %}
+<div class="navbar-fixed col s6">
+    <nav class="grey custom" >
+        <div class="nav-wrapper">
+            <a href="{{ path('home') }}" class="brand-logo">Conference</a>
+            <a href="#" class="sidenav-trigger" data-target="mobile-nav">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li>
-                    <a href="{{ path('conference') }}">Conference</a>
+                    <a href="{{ path('home') }}">Accueil</a>
                 </li>
-            {% endif %}
-            <li>
-                <a href="{{ path('profile') }}">Profile</a>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="tab">
+                            <a href="{{ path('conference') }}">Conference</a>
+                        </li>
+                    {% endif %}
+                    <li>
+                        <a href="{{ path('profile') }}">Profile</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('logout') }}">Deconnexion</a>
+                    </li>
+                    <li>
+                        <a href="#">{{ app.user.firstname }}</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{{ path('login') }}">Connexion</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('register') }}">Inscription</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<ul class="sidenav" id="mobile-nav">
+    <li>
+        <a href="{{ path('home') }}">Accueil</a>
+    </li>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {% if is_granted('ROLE_ADMIN') %}
+            <li class="tab">
+                <a href="{{ path('conference') }}">Conference</a>
             </li>
-            <li>
-                <a href="{{ path('logout') }}">Deconnexion</a>
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <a href="#">{{ app.user.firstname }}</a>
-            </li>
-            {% else %}
-                <li>
-                    <a href="{{ path('login') }}">Connexion</a>
-                </li>
-                <li>
-                    <a href="{{ path('register') }}">Inscription</a>
-                </li>
-            {% endif %}
-        </ul>
-    </div>
-</nav>
+        {% endif %}
+        <li>
+            <a href="{{ path('profile') }}">Profile</a>
+        </li>
+        <li>
+            <a href="{{ path('logout') }}">Deconnexion</a>
+        </li>
+        <li>
+            <a href="#">{{ app.user.firstname }}</a>
+        </li>
+    {% else %}
+        <li>
+            <a href="{{ path('login') }}">Connexion</a>
+        </li>
+        <li>
+            <a href="{{ path('register') }}">Inscription</a>
+        </li>
+    {% endif %}
+</ul>
 
 {% for label, messages in app.flashes %}
     {% for message in messages %}
         <script>
-            $(document).ready(function(){
-                M.toast({html: {{ message }}});
+            $(document).ready(function () {
+                M.toast({html: {{ message }} });
             })
         </script>
     {% endfor %}
