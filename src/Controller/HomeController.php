@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\ConferenceRepository;
+use App\Repository\VoteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -11,12 +12,12 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(ConferenceRepository $conferenceRepository)
+    public function index(VoteRepository $voteRepository)
     {
-        $conference = $conferenceRepository->findAll();
+        $vote = $voteRepository->findAll();
 
         return $this->render('home/index.html.twig', [
-            'conference' => $conference,
+            'vote' => $vote,
         ]);
     }
 }

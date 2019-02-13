@@ -1,10 +1,12 @@
 App\Entity\User:
-user_1:
- email: "admin@admin.com"
- password: "admin"
- roles: ['ROLE_ADMIN', 'ROLE_USER']
-user_{2..19}:
- firstname: <firstName()>
- lastname: <lastName()>
- email: <email()>
- birthday: <dateTimeBetween('-100 years', '-10 years')>
+  user_1:
+    email: "admin@admin.com"
+    password: "admin"
+    roles: ['ROLE_ADMIN', 'ROLE_USER']
+  user_{2..20}:
+    firstname: <firstName()>
+    lastname: <lastName()>
+    email: <email()>
+    password: <password()>
+    birthday: <dateTimeBetween('-100 years', '-10 years')>
+
