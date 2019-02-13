@@ -347,6 +347,9 @@
             "version": "3.2.1"
         }
     },
+    "symfony/asset": {
+        "version": "v4.2.3"
+    },
     "theofidry/alice-data-fixtures": {
         "version": "1.0",
         "recipe": {
