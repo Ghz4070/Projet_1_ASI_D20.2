@@ -2,19 +2,20 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Welcome!{% endblock %}</title>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>{% block title %}{% endblock %}</title>
     {% block stylesheets %}
-        <!-- Compiled and minified CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}" media="screen,projection"/>
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
     {% endblock %}
 </head>
 <body>
 {% include 'navBar.html.twig' %}
-{% block body %}{% endblock %}
 {% block javascripts %}
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/function.js') }}"></script>
 {% endblock %}
+{% block body %}{% endblock %}
 </body>
 </html>
