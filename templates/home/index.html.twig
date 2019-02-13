@@ -3,20 +3,21 @@
 {% block title %}home{% endblock %}
 
 {% block body %}
-    {% for conferences in conference %}
+
+    {% for i in vote %}
         <div class="form-group mt-2">
-            <h1>{{ conferences.name }}</h1>
+            <h1>{{ i.conference.name }}</h1>
         </div>
         <div class="form-group mt-2">
-            <span>{{ conferences.createdAt.date }}</span>
+            <span>{{ i.conference.createdAt.date }}</span>
         </div>
         <div class="form-group mt-2">
-            <p>{{ conferences.description }}</p>
+            <p>{{ i.conference.description }}</p>
         </div>
         {% if is_granted('ROLE_ADMIN') %}
             <div class="form-group">
-                <a class="mr-3" href="{{ path('edit_conference', {'id': conferences.id}) }}">Modifier</a>
-                <a href="{{ path('remove_conference', {'id': conferences.id}) }}">Supprimer</a>
+                <a class="mr-3" href="{{ path('edit_conference', {'id': i.conference.id}) }}">Modifier</a>
+                <a href="{{ path('remove_conference', {'id': i.conference.id}) }}">Supprimer</a>
             </div>
         {% endif %}
     {% endfor %}
