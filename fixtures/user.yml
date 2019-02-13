@@ -3,7 +3,7 @@ user_1:
  email: "admin@admin.com"
  password: "admin"
  roles: ['ROLE_ADMIN', 'ROLE_USER']
-user_{1..10}:
+user_{2..19}:
  firstname: <firstName()>
  lastname: <lastName()>
  email: <email()>
