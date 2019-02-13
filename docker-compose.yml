@@ -21,7 +21,6 @@ services:
     volumes:
       - ./docker/mysqlconf:/etc/mysql/conf.d
       - ./docker/mysql:/var/lib/mysql
-      - ./my-data:/var/lib/mysql
     ports:
       - "3307:3306"
     environment:
