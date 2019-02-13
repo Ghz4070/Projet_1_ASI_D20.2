@@ -4,21 +4,23 @@
 
 {% block body %}
     {% if not error is empty %}
-        <div class="container-fluid col-6 text-center mt-3 alert alert-danger" role="alert">
-            <span>Mot de passe ou adresse mail incorrect !</span>
-        </div>
+        <script>
+            $(document).ready(function(){
+                M.toast({html: 'Mot de passe ou adresse mail incorrect !' })
+            })
+        </script>
     {% endif %}
-    <div class="container-fluid col-6 text-center mt-4">
+    <div>
         {{ form_start(form) }}
-        <div class="form-group">
+        <div>
             {{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
             {{ form_errors(form.email, {'attr': {'class': 'form-control'}}) }}
         </div>
-        <div class="form-group">
+        <div>
             {{ form_row(form.password, {'attr': {'class': 'form-control'}}) }}
             {{ form_errors(form.password, {'attr': {'class': 'form-control'}}) }}
         </div>
-        <div class="form-group">
+        <div>
             {{ form_row(form.connect, {'attr': {'class': 'form-control btn btn-danger'}}) }}
         </div>
         {{ form_end(form) }}

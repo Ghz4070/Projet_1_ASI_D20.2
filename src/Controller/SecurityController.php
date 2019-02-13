@@ -28,7 +28,7 @@ class SecurityController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
-            $this->addFlash('success', 'Vous etes desormais inscris!');
+            $this->addFlash( 'success','Vous etes desormais inscris!');
             return $this->redirectToRoute('home');
         }
 
