@@ -32,9 +32,11 @@
 
 {% for label, messages in app.flashes %}
     {% for message in messages %}
-        <div class="container-fluid col-6 text-center mt-3 alert alert-{{ label }}" role="alert">
-            {{ message }}
-        </div>
+        <script>
+            $(document).ready(function(){
+                M.toast({html: {{ message }}});
+            })
+        </script>
     {% endfor %}
 {% endfor %}
 
