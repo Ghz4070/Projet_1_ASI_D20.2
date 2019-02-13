@@ -1,38 +1,29 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ea3d3d;">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse">
-        <ul class="navbar-nav mx-auto">
+<nav>
+    <div>
+        <ul>
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             {% if is_granted('ROLE_ADMIN') %}
-                <li class="nav-item ml-3">
-                    <a class="nav-link text-uppercase font-weight-bold text-expanded"
-                       href="{{ path('conference') }}">conference</a>
+                <li>
+                    <a href="{{ path('conference') }}">Conference</a>
                 </li>
             {% endif %}
-            <li class="nav-item ml-3">
-                <a class="nav-link text-uppercase font-weight-bold text-expanded"
-                   href="{{ path('profile') }}">profile</a>
+            <li>
+                <a href="{{ path('profile') }}">Profile</a>
             </li>
-            <li class="nav-item ml-3">
-                <a class="nav-link text-uppercase font-weight-bold text-expanded"
-                   href="{{ path('logout') }}">Deconnexion</a>
+            <li>
+                <a href="{{ path('logout') }}">Deconnexion</a>
             </li>
         </ul>
-        <ul class="navbar-nav" style="text-align: right;">
+        <ul>
             <li>
-                <a class="nav-link text-uppercase font-weight-bold text-expanded"
-                   href="#">{{ app.user.firstname }}</a>
+                <a href="#">{{ app.user.firstname }}</a>
             </li>
             {% else %}
-                <li class="nav-item px-lg-3">
-                    <a class="nav-link text-uppercase font-weight-bold text-expanded"
-                       href="{{ path('login') }}">Connexion</a>
+                <li>
+                    <a href="{{ path('login') }}">Connexion</a>
                 </li>
-                <li class="nav-item px-lg-3">
-                    <a class="nav-link text-uppercase font-weight-bold text-expanded" href="{{ path('register') }}">Inscription</a>
+                <li>
+                    <a href="{{ path('register') }}">Inscription</a>
                 </li>
             {% endif %}
         </ul>
@@ -47,11 +38,4 @@
     {% endfor %}
 {% endfor %}
 
-{% for label, messages in app.flashes %}
-    {% for message in messages %}
-        <div class="container-fluid col-6 text-center mt-3 alert alert-{{ label }}" role="alert">
-            {{ message }}
-        </div>
-    {% endfor %}
-{% endfor %}
 
