@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}
-
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     {% endblock %}
 </head>
 <body>
 {% include 'navBar.html.twig' %}
 {% block body %}{% endblock %}
 {% block javascripts %}
-    <script src="{{ asset('js/commun/dateTimePicker-min.js') }}"></script>
-    <script src="{{ asset('js/security/register.js') }}"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 {% endblock %}
 </body>
 </html>
