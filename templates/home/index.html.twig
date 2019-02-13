@@ -14,6 +14,9 @@
         <div class="form-group mt-2">
             <p>{{ i.conference.description }}</p>
         </div>
+        <div>
+            <p>{{ i.conference.average }}</p>
+        </div>
         {% if is_granted('ROLE_ADMIN') %}
             <div class="form-group">
                 <a class="mr-3" href="{{ path('edit_conference', {'id': i.conference.id}) }}">Modifier</a>
