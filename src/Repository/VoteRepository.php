@@ -19,6 +19,18 @@ class VoteRepository extends ServiceEntityRepository
         parent::__construct($registry, Vote::class);
     }
 
+
+    public function findAverage($parameter)
+    {
+        return $this->createQueryBuilder('v')
+            ->select('AVG(score)')
+            ->where('v.conference_id = :parameter')
+            ->getQuery()
+            ->setParameter('parameter', $parameter)
+            ->getResult();
+    }
+
+
     // /**
     //  * @return Vote[] Returns an array of Vote objects
     //  */
