@@ -10,42 +10,40 @@
             })
         </script>
     {% endif %}
-    <div class="row container mt">
-        <div class="col s12 z-depth-4 card-panel hoverable">
-            {{ form_start(form) }}
-            <div class="row margin">
-                <div class="input-field col s12">
-                    <i class="material-icons">person_pin</i>
-                    {{ form_row(form.email) }}
-                    {{ form_errors(form.email) }}
-                    {#<label for="email" class="center-align">Email</label>#}
+
+    <div class="row mt">
+        <div class="col s4 offset-s4">
+            <div class="card-panel hoverable">
+                {{ form_start(form) }}
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        {{ form_widget(form.email, {'attr': {'class': 'validate'}}) }}
+                        {{ form_errors(form.email, {'attr': {'class': 'validate'}}) }}
+                        <label for="email" class="center-align">Email</label>
+                    </div>
                 </div>
-            </div>
-            <div class="row margin">
-                <div class="input-field col s12">
-                    <i class="material-icons">lock</i>
-                    {{ form_row(form.password) }}
-                    {{ form_errors(form.password) }}
-                    {#<label for="login_user_password" class="center-align">Password</label>#}
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">lock</i>
+                        {{ form_widget(form.password, {'attr': {'class': 'validate'}}) }}
+                        {{ form_errors(form.password, {'attr': {'class': 'validate'}}) }}
+                        <label for="password" class="center-align">Password</label>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    {{ form_row(form.connect, {'attr': {'class': 'btn waves-effect waves-light col s12'}}) }}
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{ form_row(form.connect, {'attr': {'class': 'btn waves-effect waves-light col s12'}}) }}
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s6 m6 l6">
-                    <p class="margin medium-small"><a href="{{ path('register') }}">Register Now!</a></p>
+                <div class="row">
+                    <div class="input-field col s6 m6 l6">
+                        <p class="margin medium-small"><a href="{{ path('register') }}">Iscription</a></p>
+                    </div>
                 </div>
+                {{ form_end(form) }}
             </div>
-            {{ form_end(form) }}
         </div>
     </div>
 
 {% endblock %}
-
-
-
-
-
