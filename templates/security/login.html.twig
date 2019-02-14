@@ -10,11 +10,10 @@
             })
         </script>
     {% endif %}
-
+    {{ form_start(form) }}
     <div class="row mt">
         <div class="col s4 offset-s4">
             <div class="card-panel hoverable">
-                {{ form_start(form) }}
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">account_circle</i>
@@ -32,18 +31,17 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12">
+                    <div class="col s12">
                         {{ form_row(form.connect, {'attr': {'class': 'btn black waves-effect waves-light col s12'}}) }}
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s6 m6 l6">
-                        <p class="margin medium-small"><a href="{{ path('register') }}">Inscription</a></p>
+                    <div class="input-field col s6">
+                        <a href="{{ path('register') }}">Inscription</a>
                     </div>
                 </div>
-                {{ form_end(form) }}
             </div>
         </div>
     </div>
-
+    {{ form_end(form) }}
 {% endblock %}
