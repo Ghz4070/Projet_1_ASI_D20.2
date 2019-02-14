@@ -5,29 +5,45 @@
 {% block body %}
     {% if not error is empty %}
         <script>
-            $(document).ready(function(){
-                M.toast({html: 'Mot de passe ou adresse mail incorrect !' })
+            $(document).ready(function () {
+                M.toast({html: 'Mot de passe ou adresse mail incorrect !'})
             })
         </script>
     {% endif %}
-    <div>
-        {{ form_start(form) }}
-        <div>
-            {{ form_row(form.email)}}
-            {{ form_errors(form.email) }}
+
+    <div class="row mt">
+        <div class="col s4 offset-s4">
+            <div class="card-panel hoverable">
+                {{ form_start(form) }}
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        {{ form_widget(form.email, {'attr': {'class': 'validate'}}) }}
+                        {{ form_errors(form.email, {'attr': {'class': 'validate'}}) }}
+                        <label for="email" class="center-align">Email</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">lock</i>
+                        {{ form_widget(form.password, {'attr': {'class': 'validate'}}) }}
+                        {{ form_errors(form.password, {'attr': {'class': 'validate'}}) }}
+                        <label for="password" class="center-align">Password</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{ form_row(form.connect, {'attr': {'class': 'btn waves-effect waves-light col s12'}}) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6 m6 l6">
+                        <p class="margin medium-small"><a href="{{ path('register') }}">Iscription</a></p>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
         </div>
-        <div>
-            {{ form_row(form.password) }}
-            {{ form_errors(form.password) }}
-        </div>
-        <div>
-            {{ form_row(form.connect, {'attr': {'class': 'btn'}}) }}
-        </div>
-        {{ form_end(form) }}
     </div>
+
 {% endblock %}
-
-
-
-
-
