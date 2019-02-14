@@ -86,6 +86,12 @@
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
+    "knplabs/knp-components": {
+        "version": "v1.3.10"
+    },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v2.8.0"
+    },
     "monolog/monolog": {
         "version": "1.24.0"
     },
@@ -378,6 +384,15 @@
                 "version": "1.0",
                 "ref": "fe5a50faf580eb58f08ada2abe8afbd2d4941e05"
             }
+        }
+    },
+    "symfony/translation": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "1fb02a6e1c8f3d4232cce485c9afa868d63b115a"
         }
     }
 }
