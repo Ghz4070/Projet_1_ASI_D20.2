@@ -38,11 +38,6 @@ h4
     text-align:center;
 }
 
-.rowcustom
-{
-    padding-top:10px;
-}
-
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
     color: #039be5;
     margin-right: 24px;
@@ -51,3 +46,28 @@ h4
     text-transform: uppercase;
 }
 
+/**
+STYLE CSS FOR PAGINATION BUTTON
+ */
+
+
+.pagination li a {
+    color: black;
+    display: inline-block;
+    font-size: 1.2rem;
+    padding: 0 10px;
+    line-height: 30px;
+}
+
+.pagination
+{
+    font-weight: bold;
+    text-align: center;
+}
+
+
+li, li:before, li:after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+    color: #039be5;
+}
