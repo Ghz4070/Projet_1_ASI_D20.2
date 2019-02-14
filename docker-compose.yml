@@ -18,7 +18,6 @@ services:
 
   database:
     image: mysql:8.0
-    command: --init-file ./init.sql
     volumes:
       - ./docker/mysqlconf:/etc/mysql/conf.d
       - ./docker/mysql:/var/lib/mysql
