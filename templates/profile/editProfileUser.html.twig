@@ -3,31 +3,61 @@
 {% block title %}Profile{% endblock %}
 
     {% block body %}
-        <div class="container-fluid col-6 text-center mt-4">
-            {{ form_start(form) }}
-            <div class="form-group mt-3">
-                {{ form_row(form.firstname, {'attr': {'class': 'form-control'}}) }}
+        {{ form_start(form) }}
+        <div class="row mt">
+            <div class="col s4 offset-s4">
+                <div class="card-panel hoverable">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">account_circle</i>
+                            {{ form_widget(form.firstname, { 'id': 'firstname', 'attr': {'class': 'validate'}}) }}
+                            <label for="firstname" class="center-align">Prenom</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">account_circle</i>
+                            {{ form_widget(form.lastname, { 'id': 'lastname', 'attr': {'class': 'validate'}}) }}
+                            <label for="lastname" class="center-align">Nom</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">email</i>
+                            {{ form_widget(form.email, { 'id': 'email', 'attr': {'class': 'validate'}}) }}
+                            <label for="email" class="center-align">Email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">perm_contact_calendar</i>
+                            {{ form_widget(form.birthday, { 'id': 'birthday', 'attr': {'class': 'validate datepicker'}}) }}
+                            <label for="birthday" class="center-align">Date de naissance</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">lock</i>
+                            {{ form_widget(form.password.first, {'id': 'password_first', 'attr': {'class': 'validate'}}) }}
+                            <label for="password_first" class="center-align">Mot de passe</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">lock</i>
+                            {{ form_widget(form.password.second, {'id': 'password_second', 'attr': {'class': 'validate'}}) }}
+                            <label for="password_second" class="center-align">Ressaisissez votre mot de passe</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            {{ form_row(form.valider, {'attr': {'class': 'btn black waves-effect waves-light col s12'}}) }}
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                {{ form_row(form.lastname, {'attr': {'class': 'form-control'}}) }}
-            </div>
-            <div class="form-group">
-                {{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
-            </div>
-            <div class="form-group">
-                {{ form_row(form.birthday, {'attr': {'class': 'form-control'}}) }}
-            </div>
-            <div class="form-group">
-                {{ form_row(form.password.first, {'attr': {'class': 'form-control'}}) }}
-            </div>
-            <div class="form-group">
-                {{ form_row(form.password.second, {'attr': {'class': 'form-control'}}) }}
-            </div>
-            <div class="form-group">
-                {{ form_row(form.valider, {'attr': {'class': 'form-control btn btn-danger'}}) }}
-            </div>
-            {{ form_end(form) }}
         </div>
+        {{ form_end(form) }}
     {% endblock %}
 
 

@@ -2,10 +2,10 @@
 
 {% block title %}Inscription{% endblock %}
     {% block body %}
+        {{ form_start(form) }}
         <div class="row mt">
             <div class="col s4 offset-s4">
                 <div class="card-panel hoverable">
-                    {{ form_start(form) }}
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">account_circle</i>
@@ -27,7 +27,6 @@
                             <label for="email" class="center-align">Email</label>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">perm_contact_calendar</i>
@@ -35,7 +34,6 @@
                             <label for="birthday" class="center-align">Date de naissance</label>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">lock</i>
@@ -50,14 +48,15 @@
                             <label for="password_second" class="center-align">Ressaisissez votre mot de passe</label>
                         </div>
                     </div>
-                    <div>
-                        {{ form_row(form.valider, {'attr': {'class': 'btn black waves-effect waves-light'}}) }}
+                    <div class="row">
+                        <div class="col s12">
+                            {{ form_row(form.valider, {'attr': {'class': 'btn black waves-effect waves-light col s12'}}) }}
+                        </div>
                     </div>
-                    {{ form_end(form) }}
                 </div>
             </div>
         </div>
-
+        {{ form_end(form) }}
     {% endblock %}
 
 
