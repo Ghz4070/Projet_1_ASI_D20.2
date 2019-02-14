@@ -356,6 +356,9 @@
     "symfony/asset": {
         "version": "v4.2.3"
     },
+    "symfony/expression-language": {
+        "version": "v4.2.3"
+    },
     "symfony/swiftmailer-bundle": {
         "version": "2.5",
         "recipe": {
