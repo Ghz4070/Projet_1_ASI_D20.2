@@ -32,3 +32,22 @@
     color: orange;
     cursor: pointer;
 }
+
+h4
+{
+    text-align:center;
+}
+
+.rowcustom
+{
+    padding-top:10px;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+    color: #039be5;
+    margin-right: 24px;
+    -webkit-transition: color .3s ease;
+    transition: color .3s ease;
+    text-transform: uppercase;
+}
+
