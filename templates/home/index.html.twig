@@ -3,8 +3,8 @@
 {% block title %}home{% endblock %}
 
 {% block body %}
-    {% for i in vote %}
-    <div class="row rowcustom">
+    {% for i in pagination %}
+    <div class="row mt">
         <div class="col s12 m12">
             <div class="card white">
                 <div class="card-content white-text">
@@ -15,13 +15,17 @@
                     <p style="margin-top:5px;"><i>{{ i.conference.createdAt.date }}</i></p>
                 </div>
             </div>
+            {% if is_granted('ROLE_ADMIN') %}
+                <div class="form-group">
+                    <a class="mr-3" href="{{ path('edit_conference', {'id': i.conference.id}) }}">Modifier</a>
+                    <a href="{{ path('remove_conference', {'id': i.conference.id}) }}">Supprimer 🗑️</a>
+                </div>
+            {% endif %}
         </div>
     </div>
-        {% if is_granted('ROLE_ADMIN') %}
-            <div class="form-group">
-                <a class="mr-3" href="{{ path('edit_conference', {'id': i.conference.id}) }}">Modifier</a>
-                <a href="{{ path('remove_conference', {'id': i.conference.id}) }}">Supprimer</a>
-            </div>
-        {% endif %}
     {% endfor %}
+
+    <ul class="pagination">
+        <li class="waves-effect">{{ knp_pagination_render(pagination) }}</li>
+    </ul>
 {% endblock %}
