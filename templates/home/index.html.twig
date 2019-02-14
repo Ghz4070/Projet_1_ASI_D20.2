@@ -6,7 +6,7 @@
 
     {% for i in vote %}
         <div class="form-group mt-2">
-            <h1>{{ i.conference.name }}</h1>
+            <h1><a href="{{ path('conferenceId', {'id' :i.conference.id}) }}">{{ i.conference.name }}</a></h1>
         </div>
         <div class="form-group mt-2">
             <span>{{ i.conference.createdAt.date }}</span>
