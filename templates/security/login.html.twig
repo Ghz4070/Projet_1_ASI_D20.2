@@ -18,22 +18,22 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">account_circle</i>
-                        {{ form_widget(form.email, {'attr': {'class': 'validate'}}) }}
-                        {{ form_errors(form.email, {'attr': {'class': 'validate'}}) }}
+                        {{ form_widget(form.email, { 'id': 'email', 'attr': {'class': 'validate'}}) }}
+                        {{ form_errors(form.email, { 'id': 'email', 'attr': {'class': 'validate'}}) }}
                         <label for="email" class="center-align">Email</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">lock</i>
-                        {{ form_widget(form.password, {'attr': {'class': 'validate'}}) }}
-                        {{ form_errors(form.password, {'attr': {'class': 'validate'}}) }}
+                        {{ form_widget(form.password, {'id': 'password', 'attr': {'class': 'validate'}}) }}
+                        {{ form_errors(form.password, {'id': 'password', 'attr': {'class': 'validate'}}) }}
                         <label for="password" class="center-align">Password</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        {{ form_row(form.connect, {'attr': {'class': 'btn waves-effect waves-light col s12'}}) }}
+                        {{ form_row(form.connect, {'attr': {'class': 'btn black waves-effect waves-light col s12'}}) }}
                     </div>
                 </div>
                 <div class="row">
