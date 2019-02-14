@@ -15,7 +15,9 @@ class LoginUserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', EmailType::class)
+            ->add('email', EmailType::class, array(
+                'id'=>'email',
+            ))
             ->add('password', PasswordType::class)
             ->add('connect', SubmitType::class)
         ;
