@@ -1,19 +1,30 @@
 .custom {
     padding: 0px 10px;
 }
-.mt{
+
+.mt {
     margin-top: 30px;
 }
+
+/*#toast-container {*/
+    /*top: auto !important;*/
+    /*right: auto !important;*/
+    /*bottom:  auto !important;*/
+    /*left: auto !important;*/
+/*}*/
+
 .rating {
     direction: rtl;
 }
-.rating a{
+
+.rating a {
     color: #aaa;
     text-decoration: none;
     font-size: 3em;
     transition: color .4s;
     float: right;
 }
+
 .rating a:hover,
 .rating a:focus,
 .rating a:hover ~ a,
