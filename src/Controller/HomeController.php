@@ -12,22 +12,31 @@ use Doctrine\ORM\EntityManagerInterface;
 use mysql_xdevapi\Exception as ExceptionAlias;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Config\Definition\Exception\Exception;
+use Knp\Component\Pager\PaginatorInterface;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
-class HomeController extends AbstractController
+class HomeController extends Controller
 {
     /**
      * @Route("/", name="home")
      */
-    public function index(VoteRepository $voteRepository)
+    public function index(VoteRepository $voteRepository, Request $request)
     {
         $vote = $voteRepository->findAll();
 
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $vote, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            5/*limit per page*/
+        );
+
         return $this->render('home/index.html.twig', [
-            'vote' => $vote,
+            'pagination' => $pagination,
         ]);
     }
 

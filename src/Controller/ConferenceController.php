@@ -47,7 +47,7 @@ class ConferenceController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($conference);
             $entityManager->flush();
-            $this->addFlash('success', 'Modification enregistrer !');
+            $this->addFlash('green', 'Modification enregistrer !');
             return $this->redirectToRoute('home');
         }
 
