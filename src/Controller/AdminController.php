@@ -27,16 +27,6 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/user/{id}", name="userId")
-     */
-    public function findUserById(User $user)
-    {
-        return $this->render('user/idUser.html.twig', [
-            'user' => $user
-        ]);
-    }
-
-    /**
      * @Route("/admin/user/update/{id}", name="userUpdate")
      */
     public function updateUser(Request $request, User $user, EntityManagerInterface $entityManager)
@@ -46,7 +36,7 @@ class AdminController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($user);
             $entityManager->flush();
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('user');
         }
         return $this->render('user/update.html.twig', [
             'form' => $form->createView()
