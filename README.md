@@ -37,14 +37,10 @@ php bin/console app:create-admin admin@admin admin
 ```bash
 http://127.0.0.1:81
 ```
-
-##### Pour acceder à phpMyAdmin :
+##### Pour acceder à la BDD :
 ```bash
-127.0.0.1:8080
+vous avez le choix exemple : PhpStorm
 ```
-- Utilisateur : root
-- Mot de passe :  root
-
 ##### Pour acceder à MailHog :
 ```bash
 127.0.0.1:8025
