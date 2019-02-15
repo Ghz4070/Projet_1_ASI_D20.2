@@ -43,6 +43,18 @@ class VoteRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function averageWithoutUser($parameter){
+        return $this->createQueryBuilder('v')
+            ->select("avg(v.score) as scoreAvg, c.name, c.description, c.createdAt, c.id")
+            ->join('v.conference', 'c')
+            ->join('v.user','u')
+            ->where('v.user != :parameter')
+            ->groupBy('c.id')
+            ->setParameter('parameter', $parameter)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Vote[] Returns an array of Vote objects
     //  */
