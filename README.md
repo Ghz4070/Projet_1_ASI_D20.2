@@ -51,4 +51,22 @@ http://127.0.0.1:81
 ```
 
 ## Description
+##### En general :
 
+- pagination, fixtures, makefile, mail etc ... 
+- tous les utilisateur on pour MDP : "admin" via les fixtures
+- Voter une conférence de 1 à 5 si connecté 
+
+##### utilisateur lambda : 
+
+- Accéder à la home et voir toutes les conférences en ligne
+Voir toutes les conférences notées et celles non notées
+Créer un compte, voir les conferences noté et non noté 
+ 
+##### admin :
+
+- Un admin peut tous faire ! 
+- Uniquement l'admin peut créer les conferences 
+- CRUD un utilisateur sauf le mot de passe
+- CRUD Conferences
+- CRUD sont profil
