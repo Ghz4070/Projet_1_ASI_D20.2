@@ -1,45 +1,92 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ea3d3d;">
-    {#<a class="navbar-brand" href="{{ path('home') }}">#}
-        {#<img src="/images/youtube_logo.png" width="45" height="30" class="d-inline-block align-top" alt="">#}
-    {#</a>#}
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse">
-        <ul class="navbar-nav mx-auto">
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <li class="nav-item ml-3">
-                <a class="nav-link text-uppercase font-weight-bold text-expanded"
-                   href="{{ path('home') }}">profile</a>
-            </li>
-            <li class="nav-item ml-3">
-                <a class="nav-link text-uppercase font-weight-bold text-expanded"
-                   href="{{ path('logout') }}">Deconnexion</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav" style="text-align: right;">
-            <li>
-                <a class="nav-link text-uppercase font-weight-bold text-expanded"
-                   href="#">{{ app.user.firstname }}</a>
-            </li>
-            {% else %}
-                <li class="nav-item px-lg-3">
-                    <a class="nav-link text-uppercase font-weight-bold text-expanded"
-                       href="{{ path('login') }}">Connexion</a>
+<div class="navbar-fixed">
+    <nav class="blue-grey custom">
+        <div class="nav-wrapper">
+            <a href="{{ path('home') }}" class="brand-logo">Conference</a>
+            <a href="#" class="sidenav-trigger" data-target="mobile-nav">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li>
+                    <a href="{{ path('home') }}">Accueil</a>
                 </li>
-                <li class="nav-item px-lg-3">
-                    <a class="nav-link text-uppercase font-weight-bold text-expanded" href="{{ path('register') }}">Inscription</a>
-                </li>
-            {% endif %}
-        </ul>
-    </div>
-</nav>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="tab">
+                            <a href="{{ path('conference') }}">Conference</a>
+                        </li>
+                        <li class="tab">
+                            <a href="{{ path('user') }}">Utilisateur</a>
+                        </li>
+                        <li class="tab">
+                            <a href="{{ path('topDix') }}">Top 10</a>
+                        </li>
+                    {% endif %}
+                    <li>
+                        <a href="{{ path('profile') }}">Profile</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('conferenceVote') }}">Conférence votée</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('conferenceWithoutVote') }}">Conférence non votée</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('logout') }}">Deconnexion</a>
+                    </li>
+                    <li>
+                        <a href="#">{{ app.user.firstname }}</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{{ path('login') }}">Connexion</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('register') }}">Inscription</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<ul class="sidenav" id="mobile-nav">
+    <li>
+        <a href="{{ path('home') }}">Accueil</a>
+    </li>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {% if is_granted('ROLE_ADMIN') %}
+            <li class="tab">
+                <a href="{{ path('conference') }}">Conference</a>
+            </li>
+            <li class="tab">
+                <a href="{{ path('user') }}">Utilisateur</a>
+            </li>
+        {% endif %}
+        <li>
+            <a href="{{ path('profile') }}">Profile</a>
+        </li>
+        <li>
+            <a href="{{ path('logout') }}">Deconnexion</a>
+        </li>
+        <li>
+            <a href="#">{{ app.user.firstname }}</a>
+        </li>
+    {% else %}
+        <li>
+            <a href="{{ path('login') }}">Connexion</a>
+        </li>
+        <li>
+            <a href="{{ path('register') }}">Inscription</a>
+        </li>
+    {% endif %}
+</ul>
 
 {% for label, messages in app.flashes %}
     {% for message in messages %}
-        <div class="container-fluid col-6 text-center mt-3 alert alert-{{ label }}" role="alert">
-            {{ message }}
+        <div class="container">
+            <div class="mt-2 center-align card-panel lighten-2 {{ label }}">{{ message }}</div>
         </div>
     {% endfor %}
 {% endfor %}
+
+

@@ -1,0 +1,148 @@
+body {
+    background-image: url(/images/wallpaper.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+.custom {
+    padding: 0px 10px;
+}
+
+/* --- Debut Margin --- */
+.mt-1 {
+    margin-top: 10px;
+}
+
+.mt-2 {
+    margin-top: 20px;
+}
+
+.mt-3 {
+    margin-top: 30px;
+}
+
+.mr-1 {
+    margin-right: 15px;
+}
+
+.mb-1 {
+    margin-bottom: 10px;
+}
+
+.mb-2 {
+    margin-bottom: 20px;
+}
+
+.mb-3 {
+    margin-bottom: 30px;
+}
+
+/* --- Fin Margin --- */
+/*-------------------------------------*/
+/* --- Debut padding --- */
+
+.pt-1 {
+    padding-top: 10px;
+}
+
+/* --- Fin padding --- */
+
+.black-font {
+    color: black;
+}
+
+/*#toast-container {*/
+/*top: auto !important;*/
+/*right: auto !important;*/
+/*bottom:  auto !important;*/
+/*left: auto !important;*/
+/*}*/
+
+.rating {
+    direction: rtl;
+}
+
+.rating a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 3em;
+    transition: color .4s;
+    float: right;
+}
+
+.rating a:hover,
+.rating a:focus,
+.rating a:hover ~ a,
+.rating a:focus ~ a {
+    color: orange;
+    cursor: pointer;
+}
+
+h4 {
+    text-align: center;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+    color: #039be5;
+}
+
+/**
+STYLE CSS FOR PAGINATION BUTTON
+ */
+
+
+.pagination li a {
+    color: black;
+    display: inline-block;
+    font-size: 1.2rem;
+    padding: 0 10px;
+    line-height: 30px;
+}
+
+.pagination {
+    font-weight: bold;
+    text-align: center;
+}
+
+
+li, li:before, li:after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+    color: #039be5;
+}
+
+
+/**
+STYLE CSS FOR TEXT AFTER SEARCH
+ */
+
+.search {
+    text-align: center;
+}
+
+
+.pd-4 {
+    padding-bottom: 40px;
+}
+
+/**
+STYLE FOR TABLE ==> TOP 10
+ */
+
+table.centered thead tr th, table.centered tbody tr td {
+    text-align: center;
+    border-top: solid 1px;
+
+}
+
+table.striped > tbody > tr:nth-child(odd) {
+    background-color: whitesmoke;
+}
+
+table.highlight > tbody > tr:hover {
+    background-color: lightgrey;
+}

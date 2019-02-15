@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-3 mb-3">
+        <table class="striped">
+            <thead>
+            <tr class="center-align">
+                <th>ID</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Date d'anniversaire</th>
+                <th>Mettre a jours</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for users in user %}
+                {% if 'ROLE_ADMIN' not in users.roles %}
+                    <tr>
+                        <td>{{ users.id }}</td>
+                        <td>{{ users.firstname }}</td>
+                        <td>{{ users.lastname }}</td>
+                        <td>{{ users.email }}</td>
+                        <td>{{ users.birthday|date("d/m/Y") }}</td>
+                        <td>
+                            <a class="mr-1" href="{{ path('userUpdate', {'id': users.id}) }}">Modifier
+                                ✍🏼</a>
+                            <a href="{{ path('deleteUser', {'id': users.id}) }}">Supprimer 🗑️</a>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
