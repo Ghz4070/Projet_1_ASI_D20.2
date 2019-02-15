@@ -48,23 +48,26 @@ class HomeController extends Controller
      */
     public function vote(Conference $conference, int $note, EntityManagerInterface $entityManager)
     {
-        if ($this->getUser() !== null) {
-            $userVote = $this->getUser()->getUserVote()->toArray();
-            foreach ($userVote as $value) {
-                if ($value->getConference()->getId() == $conference->getId()) {
-                    throw new Exception("User has already vote ");
+        if($this->getUser() !== null){
+            if($this->getUser()->getRoles()[1] == "ROLE_ADMIN") {
+                throw new Exception("Admin can't modified");
+            }else {
+                $userVote = $this->getUser()->getUserVote()->toArray();
+                foreach ($userVote as $value) {
+                    if ($value->getConference()->getId() == $conference->getId()) {
+                        throw new Exception("User has already vote ");
+                    }
                 }
+                $votes = new Vote();
+                $votes->setUser($this->getUser());
+                $votes->setConference($conference);
+                $votes->setScore($note);
+
+                $entityManager->persist($votes);
+                $entityManager->flush();
+                return $this->redirectToRoute('home');
             }
-            $votes = new Vote();
-            $votes->setUser($this->getUser());
-            $votes->setConference($conference);
-            $votes->setScore($note);
-
-            $entityManager->persist($votes);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('home');
-        } else {
+        } else{
             throw new Exception("User not connected");
         }
 
