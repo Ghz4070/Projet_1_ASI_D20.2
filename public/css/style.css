@@ -120,3 +120,24 @@ STYLE CSS FOR TEXT AFTER SEARCH
 {
     text-align: center;
 }
+
+
+.pd-4 {
+    padding-bottom: 40px;
+}
+
+/**
+STYLE FOR TABLE ==> TOP 10
+ */
+
+table.centered thead tr th, table.centered tbody tr td {
+    text-align: center;
+    border-top: solid 1px;
+
+}
+table.striped > tbody > tr:nth-child(odd) {
+    background-color: whitesmoke;
+}
+table.highlight > tbody > tr:hover {
+    background-color: lightgrey;
+}
