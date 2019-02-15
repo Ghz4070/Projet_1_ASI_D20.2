@@ -30,6 +30,17 @@ class VoteRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function averageTopDix()
+    {
+        return $this->createQueryBuilder('v')// Base pour crée nimporte quelle requete
+        ->select("avg(v.score) as score_avg, c.name, c.id")// Select ou Insert ou Update ou Delete
+        ->join("v.conference", 'c')// Jointure sur la table conference
+        ->groupBy('v.conference') // regroupe par conference
+            ->orderBy('score_avg', 'desc')// desc: grand->petit en fonction de la moyenne (asc : petit->grand)
+            ->setMaxResults(10)// LIMIT = 10
+            ->getQuery()
+            ->getResult();
+    }
 
     // /**
     //  * @return Vote[] Returns an array of Vote objects

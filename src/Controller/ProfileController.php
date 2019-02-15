@@ -24,7 +24,7 @@ class ProfileController extends AbstractController
             $user->setPassword($password);
             $entityManager->persist($user);
             $entityManager->flush();
-            $this->addFlash('success', 'Modification enregistrer !');
+            $this->addFlash('green', 'Modification enregistrer !');
             return $this->redirectToRoute('home');
         }
         return $this->render('profile/editProfileUser.html.twig', [

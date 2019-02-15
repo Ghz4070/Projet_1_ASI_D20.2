@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Conference;
 use App\Form\ConferenceType;
+use App\Repository\VoteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -47,7 +48,7 @@ class ConferenceController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($conference);
             $entityManager->flush();
-            $this->addFlash('success', 'Modification enregistrer !');
+            $this->addFlash('green', 'Modification enregistrer !');
             return $this->redirectToRoute('home');
         }
 
@@ -55,6 +56,19 @@ class ConferenceController extends AbstractController
             'form' => $form->createView(),
         ));
     }
+
+    /**
+     * @Route("/admin/conference/topDix", name="topDix")
+     */
+    public function topDix(VoteRepository $voteRepository)
+    {
+        $conferences = $voteRepository->averageTopDix();
+
+        return $this->render('conference/topDix.html.twig', array(
+            'conferences' => $conferences
+        ));
+    }
+
 
     /**
      * @Route("/admin/conference/remove/{id}", name="remove_conference")

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UpdateUserType;
 use App\Repository\UserRepository;
+use App\Repository\VoteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,23 +32,23 @@ class AdminController extends AbstractController
     public function findUserById(User $user)
     {
         return $this->render('user/idUser.html.twig', [
-            'user'=> $user
+            'user' => $user
         ]);
     }
 
     /**
      * @Route("/admin/user/update/{id}", name="userUpdate")
      */
-    public function updateUser(Request $request,User $user, EntityManagerInterface $entityManager)
+    public function updateUser(Request $request, User $user, EntityManagerInterface $entityManager)
     {
         $form = $this->createForm(UpdateUserType::class, $user);
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($user);
             $entityManager->flush();
             return $this->redirectToRoute('home');
         }
-        return $this->render('user/update.html.twig',[
+        return $this->render('user/update.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -56,7 +57,16 @@ class AdminController extends AbstractController
      * @Route("/admin/user/delete/{id}", name="deleteUser")
      * @ParamConverter("user", options={"mapping"={"id"="id"}})
      */
-    public function deleteUser(User $user, EntityManagerInterface $entityManager){
+    public function deleteUser(User $user, VoteRepository $voteRepository, EntityManagerInterface $entityManager)
+    {
+        $votes = $voteRepository->findBy(['user' => $user]);
+        if($votes !== null){
+            foreach ($votes as $vote) {
+                $vote->setUser(null);
+                $entityManager->persist($vote);
+                $entityManager->flush();
+            }
+        }
         $entityManager->remove($user);
         $entityManager->flush();
         return $this->redirectToRoute('home');

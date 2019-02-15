@@ -3,21 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Conference;
-use App\Entity\User;
 use App\Entity\Vote;
-use App\Repository\ConferenceRepository;
 use App\Repository\VoteRepository;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
-use mysql_xdevapi\Exception as ExceptionAlias;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Config\Definition\Exception\Exception;
-use Knp\Component\Pager\PaginatorInterface;
-use Doctrine\ORM\Tools\Pagination\Paginator;
+
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -29,7 +22,7 @@ class HomeController extends Controller
     /**
      * @Route("/", name="home")
      */
-    public function index(ConferenceRepository $conferenceRepository, Request $request)
+    public function showConf(ConferenceRepository $conferenceRepository, Request $request)
     {
         $conf = $conferenceRepository->findAll();
 
@@ -60,23 +53,26 @@ class HomeController extends Controller
      */
     public function vote(Conference $conference, int $note, EntityManagerInterface $entityManager)
     {
-        if ($this->getUser() !== null) {
-            $userVote = $this->getUser()->getUserVote()->toArray();
-            foreach ($userVote as $value) {
-                if ($value->getConference()->getId() == $conference->getId()) {
-                    throw new Exception("User has already vote ");
+        if($this->getUser() !== null){
+            if($this->getUser()->getRoles()[1] == "ROLE_ADMIN") {
+                throw new Exception("Admin can't modified");
+            }else {
+                $userVote = $this->getUser()->getUserVote()->toArray();
+                foreach ($userVote as $value) {
+                    if ($value->getConference()->getId() == $conference->getId()) {
+                        throw new Exception("User has already vote ");
+                    }
                 }
+                $votes = new Vote();
+                $votes->setUser($this->getUser());
+                $votes->setConference($conference);
+                $votes->setScore($note);
+
+                $entityManager->persist($votes);
+                $entityManager->flush();
+                return $this->redirectToRoute('home');
             }
-            $votes = new Vote();
-            $votes->setUser($this->getUser());
-            $votes->setConference($conference);
-            $votes->setScore($note);
-
-            $entityManager->persist($votes);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('home');
-        } else {
+        } else{
             throw new Exception("User not connected");
         }
     }
