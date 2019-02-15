@@ -38,14 +38,9 @@ services:
       PMA_HOST: database
 
   mailhog:
-<<<<<<< HEAD
-    image: mailhog/mailhog
-    build: docker
-=======
     image: mailhog/mailhog:latest
     container_name: mailhog
     restart:  always
     ports:
       - "8025:8025"
       - "1025:1025"
->>>>>>> f6ad167035ed379a5acb0fb660be99cc2a7d82cb

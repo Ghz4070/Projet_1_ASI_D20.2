@@ -28,13 +28,8 @@
                             </span>
                             <p class="black-font">{{ page.description }}</p>
                         </div>
-<<<<<<< HEAD
-                        <div class="row card-action">
-                            <p class="mt-1"><i>{{ page.conference.createdAt|date("d/m/Y") }}</i></p>
-=======
                         <div class="card-action">
                             <p class="mt-1"><i>{{ page.createdAt|date("d/m/Y") }}</i></p>
->>>>>>> f6ad167035ed379a5acb0fb660be99cc2a7d82cb
                         </div>
                     </div>
                     {% if is_granted('ROLE_ADMIN') %}
