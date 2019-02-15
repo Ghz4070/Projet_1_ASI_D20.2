@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Search{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <form class="pull-right hidden" role="search" id="nav-search-form" method="post" action="{{ path('search') }}">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Tapez votre recherche ici" name ="search">
+                <span class="input-group-btn">
+                    <div class="center-align">
+                <button type="submit" class="btn btn-default">Rechercher</button>
+                    </div>
+              </span>
+            </div>
+        </form>
+    </div>
+
+    {% if res|default is empty %}
+        <p class="search">Votre recherche n'a donné aucun résultat</p>
+    {% endif %}
+
+    {% if data|default is empty %}
+        <p class="search">Veuillez saisir au moins un caractères</p>
+    {% endif %}
+
+    <p class="search">Resultat de la recherche pour "{{ data }}"</p>
+    {% for i in res %}
+        <div class="row mt">
+            <div class="col s12 m12">
+                <div class="card white">
+                    <div class="card-content white-text">
+                        <span class="card-action"><h4><a href="{{ path('conferenceId', {'id' :i.id}) }}">{{ i.name }}</a></h4></span>
+                        <p style="color:black;">{{ i.description }}</p>
+                    </div>
+                    <div class="card-action">
+                        <p style="margin-top:5px;"><i>{{ i.createdAt.date }}</i></p>
+                    </div>
+                </div>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div class="form-group">
+                        <a class="mr-3" href="{{ path('edit_conference', {'id': i.id}) }}">Modifier 🖊️</a>
+                        <a href="{{ path('remove_conference', {'id': i.id}) }}">Supprimer 🗑️</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}

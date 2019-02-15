@@ -3,6 +3,18 @@
 {% block title %}home{% endblock %}
 
 {% block body %}
+    <div class="container">
+        <form class="pull-right hidden" role="search" id="nav-search-form" method="post" action="{{ path('search') }}">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Tapez votre recherche ici" name ="search">
+                <span class="input-group-btn">
+                    <div class="center-align">
+                        <button type="submit" class="btn btn-default">Rechercher</button>
+                    </div>
+              </span>
+            </div>
+        </form>
+    </div>
     {% for page in pagination %}
         <div class="container">
             <div class="row mt-3">
@@ -11,20 +23,25 @@
                         <div class="card-content white-text">
                             <span class="card-action">
                                 <h4>
-                                    <a href="{{ path('conferenceId', {'id': page.conference.id}) }}">{{ page.conference.name }}</a>
+                                    <a href="{{ path('conferenceId', {'id': page.id}) }}">{{ page.name }}</a>
                                 </h4>
                             </span>
-                            <p class="black-font">{{ page.conference.description }}</p>
+                            <p class="black-font">{{ page.description }}</p>
                         </div>
+<<<<<<< HEAD
                         <div class="row card-action">
                             <p class="mt-1"><i>{{ page.conference.createdAt|date("d/m/Y") }}</i></p>
+=======
+                        <div class="card-action">
+                            <p class="mt-1"><i>{{ page.createdAt|date("d/m/Y") }}</i></p>
+>>>>>>> f6ad167035ed379a5acb0fb660be99cc2a7d82cb
                         </div>
                     </div>
                     {% if is_granted('ROLE_ADMIN') %}
                         <div>
-                            <a class="mr-1" href="{{ path('edit_conference', {'id': page.conference.id}) }}">Modifier
+                            <a class="mr-1" href="{{ path('edit_conference', {'id': page.id}) }}">Modifier
                                 ✍🏼</a>
-                            <a href="{{ path('remove_conference', {'id': page.conference.id}) }}">Supprimer 🗑️</a>
+                            <a href="{{ path('remove_conference', {'id': page.id}) }}">Supprimer 🗑️</a>
                         </div>
                     {% endif %}
                 </div>
