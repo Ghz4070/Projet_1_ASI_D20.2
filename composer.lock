@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-
-    "content-hash": "40ffc76284429241fa606c81d73af955",
+    "content-hash": "dfb932dd6697f524aaa2a4adf50d4a80",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2245,8 +2244,6 @@
             "time": "2018-07-27T08:46:10+00:00"
         },
         {
-            "name": "sensio/framework-extra-bundle",
-            "version": "v5.2.4",
             "name": "sebastian/comparator",
             "version": "3.0.2",
             "source": {
