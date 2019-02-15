@@ -27,17 +27,7 @@ services:
     environment:
       MYSQL_DATABASE: symfonyprojet
       MYSQL_ROOT_PASSWORD: root
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    depends_on:
-      - database
-    ports:
-      - "8080:80"
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      PMA_HOST: database
-
+      
   mailhog:
     image: mailhog/mailhog:latest
     container_name: mailhog
