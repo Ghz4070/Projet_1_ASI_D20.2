@@ -1,12 +1,12 @@
 App\Entity\User:
   user_1:
     email: "admin@admin.com"
-    password: <encodePassword()>
+    password: <passwordEncode(@self, 'admin')>
     roles: ['ROLE_ADMIN', 'ROLE_USER']
   user_{2..20}:
     firstname: <firstName()>
     lastname: <lastName()>
     email: <email()>
-    password: <encodePassword()>
+    password: <passwordEncode(@self, 'admin')>
     birthday: <dateTimeBetween('-100 years', '-10 years')>
 

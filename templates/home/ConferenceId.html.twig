@@ -8,15 +8,26 @@
         <p>{{ conference.createdAt.date }}</p>
         <p>{{ conference.description }}</p>
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            {% if app.user.roles[0] == "ROLE_USER"%}
-                <div class="rating">
-                    <a href="{{ path('vote', {'id':conference.id, 'note':'5'}) }}" title="Donner 5 étoiles">☆</a>
-                    <a href="{{ path('vote', {'id':conference.id, 'note':'4'}) }}" title="Donner 4 étoiles">☆</a>
-                    <a href="{{ path('vote', {'id':conference.id, 'note':'3'}) }}" title="Donner 3 étoiles">☆</a>
-                    <a href="{{ path('vote', {'id':conference.id, 'note':'2'}) }}" title="Donner 2 étoiles">☆</a>
-                    <a href="{{ path('vote', {'id':conference.id, 'note':'1'}) }}" title="Donner 1 étoile">☆</a>
-                </div>
-            {% endif %}
+            {% if is_granted('ROLE_USER') %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div class="rating">
+                        <h4>Admin ne peut pas voter</h4>
+                        <a title="Donner 5 étoiles">☆</a>
+                        <a title="Donner 4 étoiles">☆</a>
+                        <a title="Donner 3 étoiles">☆</a>
+                        <a title="Donner 2 étoiles">☆</a>
+                        <a title="Donner 1 étoile">☆</a>
+                    </div>
+                {% else %}
+                    <div class="rating">
+                        <a href="{{ path('vote', {'id':conference.id, 'note':'5'}) }}" title="Donner 5 étoiles">☆</a>
+                        <a href="{{ path('vote', {'id':conference.id, 'note':'4'}) }}" title="Donner 4 étoiles">☆</a>
+                        <a href="{{ path('vote', {'id':conference.id, 'note':'3'}) }}" title="Donner 3 étoiles">☆</a>
+                        <a href="{{ path('vote', {'id':conference.id, 'note':'2'}) }}" title="Donner 2 étoiles">☆</a>
+                        <a href="{{ path('vote', {'id':conference.id, 'note':'1'}) }}" title="Donner 1 étoile">☆</a>
+                    </div>
+                    {% endif %}
+                {% endif %}
         {% else %}
             <div class="rating">
                 <h4>Pour pouvoir voter il faut se connecter</h4>
