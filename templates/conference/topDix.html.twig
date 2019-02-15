@@ -9,6 +9,7 @@
                     <th>ID</th>
                     <th>Titre</th>
                     <th>Moyenne score</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -16,11 +17,8 @@
                     <tr>
                         <td>{{ conference.id }}</td>
                         <td>{{ conference.name }}</td>
-                        <td>{% for i in 1..conference.score_avg %}
-                                ⭐
-                            {% endfor %}
-                          {{   conference.score_avg }}
-                            </td>
+                        <td>{% for i in 1..conference.score_avg %}⭐{% endfor %}</td>
+                        <td><b>{{ conference.score_avg|round(1, 'floor') }}/5</b></td>
                     </tr>
                 {% endfor %}
                 </tbody>
