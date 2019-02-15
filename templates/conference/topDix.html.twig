@@ -3,9 +3,9 @@
 {% block title %}Inscription{% endblock %}
     {% block body %}
         <div class="container mt-2">
-            <table class="striped">
+            <table class="bordered striped centered highlight">
                 <thead>
-                <tr class="center-align">
+                <tr class="">
                     <th>ID</th>
                     <th>Titre</th>
                     <th>Moyenne score</th>
@@ -16,12 +16,17 @@
                     <tr>
                         <td>{{ conference.id }}</td>
                         <td>{{ conference.name }}</td>
-                        <td>{{ conference.score_avg|round(1, 'floor') }}</td>
+                        <td>{% for i in 1..conference.score_avg %}
+                                ⭐
+                            {% endfor %}
+                          {{   conference.score_avg }}
+                            </td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
         </div>
     {% endblock %}
+
 
 
