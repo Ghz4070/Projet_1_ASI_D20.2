@@ -19,17 +19,6 @@ class VoteRepository extends ServiceEntityRepository
         parent::__construct($registry, Vote::class);
     }
 
-
-    public function findAverage($parameter)
-    {
-        return $this->createQueryBuilder('v')
-            ->select('AVG(score)')
-            ->where('v.conference_id = :parameter')
-            ->getQuery()
-            ->setParameter('parameter', $parameter)
-            ->getResult();
-    }
-
     public function averageTopDix()
     {
         return $this->createQueryBuilder('v')// Base pour crée nimporte quelle requete
@@ -38,6 +27,18 @@ class VoteRepository extends ServiceEntityRepository
         ->groupBy('v.conference') // regroupe par conference
             ->orderBy('score_avg', 'desc')// desc: grand->petit en fonction de la moyenne (asc : petit->grand)
             ->setMaxResults(10)// LIMIT = 10
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function averageByUser($parameter){
+        return $this->createQueryBuilder('v')
+            ->select("avg(v.score) as scoreAvg, c.name, c.description, c.createdAt, c.id")
+            ->join('v.conference', 'c')
+            ->join('v.user','u')
+            ->where('v.user = :parameter')
+            ->groupBy('c.id')
+            ->setParameter('parameter', $parameter)
             ->getQuery()
             ->getResult();
     }

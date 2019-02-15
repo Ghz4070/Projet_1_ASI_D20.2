@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller;
-
+use App\Entity\User;
 use App\Entity\Conference;
 use App\Form\ConferenceType;
 use App\Repository\UserRepository;
@@ -69,9 +69,9 @@ class ConferenceController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
-        return $this->render('conference/edit_conference.html.twig', array(
+        return $this->render('conference/edit_conference.html.twig', [
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -81,9 +81,9 @@ class ConferenceController extends AbstractController
     {
         $conferences = $voteRepository->averageTopDix();
 
-        return $this->render('conference/topDix.html.twig', array(
+        return $this->render('conference/topDix.html.twig', [
             'conferences' => $conferences
-        ));
+        ]);
     }
 
 
@@ -97,5 +97,17 @@ class ConferenceController extends AbstractController
         $entityManager->flush();
         $this->addFlash('notice', 'Element supprimer !');
         return $this->redirectToRoute('home');
+    }
+
+    /**
+     * @Route("/user/conference/vote", name="conferenceVote")
+     */
+    public function conferenceVote(VoteRepository $voteRepository){
+        $usercurrent = $this->getUser();
+        $uservote = $voteRepository->averageByUser($usercurrent);
+        return $this->render('conference/vote.html.twig',[
+           'vote' => $uservote
+        ]);
+
     }
 }
