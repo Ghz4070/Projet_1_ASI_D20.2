@@ -12,18 +12,23 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Config\Definition\Exception\Exception;
 
 
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use PUGX\AutocompleterBundle\Form\Type\AutocompleteType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
 class HomeController extends Controller
 {
     /**
      * @Route("/", name="home")
      */
-    public function showConf(VoteRepository $voteRepository, Request $request)
+    public function showConf(ConferenceRepository $conferenceRepository, Request $request)
     {
-        $vote = $voteRepository->findAll();
+        $conf = $conferenceRepository->findAll();
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-            $vote, /* query NOT result */
+            $conf, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
             5/*limit per page*/
         );
@@ -70,6 +75,27 @@ class HomeController extends Controller
         } else{
             throw new Exception("User not connected");
         }
-
     }
+
+    /**
+     * @Route("/search", name="search")
+     */
+    public function searchAction(Request $request){
+        $data = $request->request->get('search');
+
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT c FROM App\Entity\Conference c
+            WHERE c.name LIKE :data')
+            ->setParameter('data','%'.$data.'%');
+
+        $res = $query->getResult();
+
+
+        return $this->render('home/search.html.twig', array(
+            'res' => $res,
+            'data' => $data,
+        ));
+    }
+
 }
