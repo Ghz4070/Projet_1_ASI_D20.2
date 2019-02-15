@@ -3,22 +3,35 @@
 {% block title %}home{% endblock %}
 
 {% block body %}
+    <div class="container">
+        <form class="pull-right hidden" role="search" id="nav-search-form" method="post" action="{{ path('search') }}">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Tapez votre recherche ici" name ="search">
+                <span class="input-group-btn">
+                    <div class="center-align">
+                <button type="submit" class="btn btn-default">Rechercher</button>
+                    </div>
+              </span>
+            </div>
+        </form>
+    </div>
+
     {% for i in pagination %}
     <div class="row mt">
         <div class="col s12 m12">
             <div class="card white">
                 <div class="card-content white-text">
-                    <span class="card-action"><h4><a href="{{ path('conferenceId', {'id' :i.conference.id}) }}">{{ i.conference.name }}</a></h4></span>
-                    <p style="color:black;">{{ i.conference.description }}</p>
+                    <span class="card-action"><h4><a href="{{ path('conferenceId', {'id' :i.id}) }}">{{ i.name }}</a></h4></span>
+                    <p style="color:black;">{{ i.description }}</p>
                 </div>
                 <div class="card-action">
-                    <p style="margin-top:5px;"><i>{{ i.conference.createdAt.date }}</i></p>
+                    <p style="margin-top:5px;"><i>{{ i.createdAt.date }}</i></p>
                 </div>
             </div>
             {% if is_granted('ROLE_ADMIN') %}
                 <div class="form-group">
-                    <a class="mr-3" href="{{ path('edit_conference', {'id': i.conference.id}) }}">Modifier</a>
-                    <a href="{{ path('remove_conference', {'id': i.conference.id}) }}">Supprimer 🗑️</a>
+                    <a class="mr-3" href="{{ path('edit_conference', {'id': i.id}) }}">Modifier 🖊️</a>
+                    <a href="{{ path('remove_conference', {'id': i.id}) }}">Supprimer 🗑️</a>
                 </div>
             {% endif %}
         </div>

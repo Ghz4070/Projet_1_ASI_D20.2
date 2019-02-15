@@ -19,18 +19,23 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use PUGX\AutocompleterBundle\Form\Type\AutocompleteType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
 class HomeController extends Controller
 {
     /**
      * @Route("/", name="home")
      */
-    public function index(VoteRepository $voteRepository, Request $request)
+    public function index(ConferenceRepository $conferenceRepository, Request $request)
     {
-        $vote = $voteRepository->findAll();
+        $conf = $conferenceRepository->findAll();
 
-        $paginator  = $this->get('knp_paginator');
+        $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-            $vote, /* query NOT result */
+            $conf, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
             5/*limit per page*/
         );
@@ -43,35 +48,58 @@ class HomeController extends Controller
     /**
      * @Route("/conference/{id}", name="conferenceId")
      */
-    public function conferenceId(Conference $conference){
+    public function conferenceId(Conference $conference)
+    {
         return $this->render('home/ConferenceId.html.twig', [
             'conference' => $conference
         ]);
     }
+
     /**
      * @Route("/conference/{id}/{note}", name="vote")
      */
-    public function vote(Conference $conference,int $note, EntityManagerInterface $entityManager)
+    public function vote(Conference $conference, int $note, EntityManagerInterface $entityManager)
     {
-        if($this->getUser() !== null){
-            $userVote= $this->getUser()->getUserVote()->toArray();
-            foreach ($userVote as $value){
-                if($value->getConference()->getId() == $conference->getId()){
+        if ($this->getUser() !== null) {
+            $userVote = $this->getUser()->getUserVote()->toArray();
+            foreach ($userVote as $value) {
+                if ($value->getConference()->getId() == $conference->getId()) {
                     throw new Exception("User has already vote ");
                 }
             }
-                $votes = new Vote();
-                $votes->setUser($this->getUser());
-                $votes->setConference($conference);
-                $votes->setScore($note);
+            $votes = new Vote();
+            $votes->setUser($this->getUser());
+            $votes->setConference($conference);
+            $votes->setScore($note);
 
-                $entityManager->persist($votes);
-                $entityManager->flush();
+            $entityManager->persist($votes);
+            $entityManager->flush();
 
-                return $this->redirectToRoute('home');
-        } else{
+            return $this->redirectToRoute('home');
+        } else {
             throw new Exception("User not connected");
         }
-
     }
+
+    /**
+     * @Route("/search", name="search")
+     */
+    public function searchAction(Request $request){
+        $data = $request->request->get('search');
+
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT c FROM App\Entity\Conference c
+            WHERE c.name LIKE :data')
+            ->setParameter('data','%'.$data.'%');
+
+        $res = $query->getResult();
+
+
+        return $this->render('home/search.html.twig', array(
+            'res' => $res,
+            'data' => $data,
+        ));
+    }
+
 }
