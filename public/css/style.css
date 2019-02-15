@@ -37,6 +37,10 @@ body {
     margin-bottom: 20px;
 }
 
+.mb-3 {
+    margin-bottom: 30px;
+}
+
 /* --- Fin Margin --- */
 /*-------------------------------------*/
 /* --- Debut padding --- */
@@ -47,7 +51,7 @@ body {
 
 /* --- Fin padding --- */
 
-.black-font{
+.black-font {
     color: black;
 }
 
@@ -116,8 +120,7 @@ li, li:before, li:after {
 STYLE CSS FOR TEXT AFTER SEARCH
  */
 
-.search
-{
+.search {
     text-align: center;
 }
 
@@ -135,9 +138,11 @@ table.centered thead tr th, table.centered tbody tr td {
     border-top: solid 1px;
 
 }
+
 table.striped > tbody > tr:nth-child(odd) {
     background-color: whitesmoke;
 }
+
 table.highlight > tbody > tr:hover {
     background-color: lightgrey;
 }
