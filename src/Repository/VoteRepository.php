@@ -55,6 +55,15 @@ class VoteRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function avg(){
+        return $this->createQueryBuilder('v')
+            ->select("avg(v.score) as scoreAvg, c.id ")
+            ->join('v.conference', 'c')
+            ->groupBy('c.id')
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Vote[] Returns an array of Vote objects
     //  */

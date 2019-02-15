@@ -21,10 +21,10 @@ class HomeController extends Controller
     /**
      * @Route("/", name="home")
      */
-    public function showConf(ConferenceRepository $conferenceRepository, Request $request)
+    public function showConf(ConferenceRepository $conferenceRepository, VoteRepository $voteRepository ,Request $request)
     {
         $conf = $conferenceRepository->findAll();
-
+        $vote = $voteRepository->avg();
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $conf, /* query NOT result */
@@ -34,6 +34,7 @@ class HomeController extends Controller
 
         return $this->render('home/index.html.twig', [
             'pagination' => $pagination,
+            'avg' => $vote
         ]);
     }
 
@@ -53,24 +54,26 @@ class HomeController extends Controller
     public function vote(Conference $conference, int $note, EntityManagerInterface $entityManager)
     {
         if($this->getUser() !== null){
-            if($this->getUser()->getRoles()[1] == "ROLE_ADMIN") {
-                throw new Exception("Admin can't modified");
-            }else {
-                $userVote = $this->getUser()->getUserVote()->toArray();
-                foreach ($userVote as $value) {
-                    if ($value->getConference()->getId() == $conference->getId()) {
-                        throw new Exception("User has already vote ");
+            if($this->getUser()->getRoles()[0] == "ROLE_USER"){
+                if(in_array("ROLE_ADMIN", $this->getUser()->getRoles()) == "ROLE_ADMIN") {
+                    throw new Exception("Admin can't modified");
+                }else {
+                    $userVote = $this->getUser()->getUserVote()->toArray();
+                    foreach ($userVote as $value) {
+                        if ($value->getConference()->getId() == $conference->getId()) {
+                            throw new Exception("User has already vote ");
+                        }
                     }
+                    $votes = new Vote();
+                    $votes->setUser($this->getUser());
+                    $votes->setConference($conference);
+                    $votes->setScore($note);
+
+                    $entityManager->persist($votes);
+                    $entityManager->flush();
+
+                    return $this->redirectToRoute('home');
                 }
-                $votes = new Vote();
-                $votes->setUser($this->getUser());
-                $votes->setConference($conference);
-                $votes->setScore($note);
-
-                $entityManager->persist($votes);
-                $entityManager->flush();
-
-                return $this->redirectToRoute('home');
             }
         } else{
             throw new Exception("User not connected");
