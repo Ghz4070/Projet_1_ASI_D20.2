@@ -19,8 +19,10 @@ class UpdateUserType extends AbstractType
             ->add('firstname', TextType::class)
             ->add('lastname', TextType::class)
             ->add('email', EmailType::class)
-            ->add('birthday', BirthdayType::class)
-            ->add('submit', SubmitType::class)
+            ->add('birthday', BirthdayType::class, array(
+                'widget' => 'single_text',
+            ))
+            ->add('valide', SubmitType::class)
         ;
     }
 

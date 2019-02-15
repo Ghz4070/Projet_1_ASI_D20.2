@@ -1,10 +1,44 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     {{ form_start(form) }}
-    {{ form_row(form.firstname) }}
-    {{ form_row(form.lastname) }}
-    {{ form_row(form.email) }}
-    {{ form_row(form.birthday) }}
-    {{ form_row(form.submit) }}
+    <div class="row mt">
+        <div class="col s4 offset-s4">
+            <div class="card-panel hoverable">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        {{ form_widget(form.firstname, { 'id': 'firstname', 'attr': {'class': 'validate'}}) }}
+                        <label for="firstname" class="center-align">Prenom</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        {{ form_widget(form.lastname, { 'id': 'lastname', 'attr': {'class': 'validate'}}) }}
+                        <label for="lastname" class="center-align">Nom</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">email</i>
+                        {{ form_widget(form.email, { 'id': 'email', 'attr': {'class': 'validate'}}) }}
+                        <label for="email" class="center-align">Email</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">perm_contact_calendar</i>
+                        {{ form_widget(form.birthday, { 'id': 'birthday', 'attr': {'class': 'validate datepicker'}}) }}
+                        <label for="birthday" class="center-align">Date de naissance</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        {{ form_row(form.valide, {'attr': {'class': 'btn black waves-effect waves-light col s12'}}) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     {{ form_end(form) }}
 {% endblock %}
