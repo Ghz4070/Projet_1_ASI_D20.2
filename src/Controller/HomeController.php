@@ -70,6 +70,7 @@ class HomeController extends Controller
 
                 $entityManager->persist($votes);
                 $entityManager->flush();
+
                 return $this->redirectToRoute('home');
             }
         } else{
