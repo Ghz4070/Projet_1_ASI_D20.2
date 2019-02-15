@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+    {% block body %}
+        <div class="container mt-2">
+            <table class="striped">
+                <thead>
+                <tr class="center-align">
+                    <th>ID</th>
+                    <th>Titre</th>
+                    <th>Moyenne score</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for conference in conferences %}
+                    <tr>
+                        <td>{{ conference.id }}</td>
+                        <td>{{ conference.name }}</td>
+                        <td>{{ conference.score_avg|round(1, 'floor') }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endblock %}
+
+

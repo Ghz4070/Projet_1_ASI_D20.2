@@ -3,32 +3,25 @@
 namespace App\Controller;
 
 use App\Entity\Conference;
-use App\Entity\User;
 use App\Entity\Vote;
-use App\Repository\ConferenceRepository;
 use App\Repository\VoteRepository;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
-use mysql_xdevapi\Exception as ExceptionAlias;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Config\Definition\Exception\Exception;
-use Knp\Component\Pager\PaginatorInterface;
-use Doctrine\ORM\Tools\Pagination\Paginator;
+
 
 class HomeController extends Controller
 {
     /**
      * @Route("/", name="home")
      */
-    public function index(VoteRepository $voteRepository, Request $request)
+    public function showConf(VoteRepository $voteRepository, Request $request)
     {
         $vote = $voteRepository->findAll();
 
-        $paginator  = $this->get('knp_paginator');
+        $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $vote, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
@@ -43,15 +36,17 @@ class HomeController extends Controller
     /**
      * @Route("/conference/{id}", name="conferenceId")
      */
-    public function conferenceId(Conference $conference){
+    public function conferenceId(Conference $conference)
+    {
         return $this->render('home/ConferenceId.html.twig', [
             'conference' => $conference
         ]);
     }
+
     /**
      * @Route("/conference/{id}/{note}", name="vote")
      */
-    public function vote(Conference $conference,int $note, EntityManagerInterface $entityManager)
+    public function vote(Conference $conference, int $note, EntityManagerInterface $entityManager)
     {
         if($this->getUser() !== null){
             if($this->getUser()->getRoles()[1] == "ROLE_ADMIN") {
@@ -70,9 +65,7 @@ class HomeController extends Controller
 
                 $entityManager->persist($votes);
                 $entityManager->flush();
-
                 return $this->redirectToRoute('home');
-
             }
         } else{
             throw new Exception("User not connected");
