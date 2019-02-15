@@ -5,6 +5,7 @@
         <table class="striped">
             <thead>
             <tr class="center-align">
+                <th>ID</th>
                 <th>Prénom</th>
                 <th>Nom</th>
                 <th>Email</th>
@@ -15,6 +16,7 @@
             <tbody>
             {% for users in user %}
                 <tr>
+                    <td>{{ users.id }}</td>
                     <td>{{ users.firstname }}</td>
                     <td>{{ users.lastname }}</td>
                     <td>{{ users.email }}</td>
