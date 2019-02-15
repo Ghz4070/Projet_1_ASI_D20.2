@@ -1,24 +1,32 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <table>
-        <thead>
-            <tr>
+    <div class="container mt-2">
+        <table class="striped">
+            <thead>
+            <tr class="center-align">
                 <th>Prénom</th>
                 <th>Nom</th>
                 <th>Email</th>
                 <th>Date d'anniversaire</th>
+                <th>Mettre a jours</th>
             </tr>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             {% for users in user %}
                 <tr>
                     <td>{{ users.firstname }}</td>
                     <td>{{ users.lastname }}</td>
                     <td>{{ users.email }}</td>
-                    <td>{{ users.birthday.date }}</td>
+                    <td>{{ users.birthday|date("d/m/Y") }}</td>
+                    <td>
+                        <a class="mr-1" href="{{ path('userId', {'id': users.id}) }}">Modifier
+                            ✍🏼</a>
+                        <a href="{{ path('deleteUser', {'id': users.id}) }}">Supprimer 🗑️</a>
+                    </td>
                 </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

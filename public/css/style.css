@@ -1,16 +1,57 @@
+body {
+    background-image: url(/images/wallpaper.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
 .custom {
     padding: 0px 10px;
 }
 
-.mt {
+/* --- Debut Margin --- */
+.mt-1 {
+    margin-top: 10px;
+}
+
+.mt-2 {
+    margin-top: 20px;
+}
+
+.mt-3 {
     margin-top: 30px;
 }
 
+.mr-1 {
+    margin-right: 15px;
+}
+
+.mb-1 {
+    margin-bottom: 10px;
+}
+
+/* --- Fin Margin --- */
+/*-------------------------------------*/
+/* --- Debut padding --- */
+
+.pt-1 {
+    padding-top: 10px;
+}
+
+/* --- Fin padding --- */
+
+.black-font{
+    color: black;
+}
+
 /*#toast-container {*/
-    /*top: auto !important;*/
-    /*right: auto !important;*/
-    /*bottom:  auto !important;*/
-    /*left: auto !important;*/
+/*top: auto !important;*/
+/*right: auto !important;*/
+/*bottom:  auto !important;*/
+/*left: auto !important;*/
 /*}*/
 
 .rating {
@@ -33,17 +74,12 @@
     cursor: pointer;
 }
 
-h4
-{
-    text-align:center;
+h4 {
+    text-align: center;
 }
 
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
     color: #039be5;
-    margin-right: 24px;
-    -webkit-transition: color .3s ease;
-    transition: color .3s ease;
-    text-transform: uppercase;
 }
 
 /**
@@ -59,8 +95,7 @@ STYLE CSS FOR PAGINATION BUTTON
     line-height: 30px;
 }
 
-.pagination
-{
+.pagination {
     font-weight: bold;
     text-align: center;
 }

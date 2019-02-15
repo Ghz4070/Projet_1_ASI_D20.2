@@ -3,28 +3,34 @@
 {% block title %}home{% endblock %}
 
 {% block body %}
-    {% for i in pagination %}
-    <div class="row mt">
-        <div class="col s12 m12">
-            <div class="card white">
-                <div class="card-content white-text">
-                    <span class="card-action"><h4><a href="{{ path('conferenceId', {'id' :i.conference.id}) }}">{{ i.conference.name }}</a></h4></span>
-                    <p style="color:black;">{{ i.conference.description }}</p>
-                </div>
-                <div class="card-action">
-                    <p style="margin-top:5px;"><i>{{ i.conference.createdAt.date }}</i></p>
+    {% for page in pagination %}
+        <div class="container">
+            <div class="row mt-3">
+                <div class="col s12 m12">
+                    <div class="card white hoverable">
+                        <div class="card-content white-text">
+                            <span class="card-action">
+                                <h4>
+                                    <a href="{{ path('conferenceId', {'id': page.conference.id}) }}">{{ page.conference.name }}</a>
+                                </h4>
+                            </span>
+                            <p class="black-font">{{ page.conference.description }}</p>
+                        </div>
+                        <div class="card-action">
+                            <p class="mt-1"><i>{{ page.conference.createdAt|date("d/m/Y") }}</i></p>
+                        </div>
+                    </div>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <div>
+                            <a class="mr-1" href="{{ path('edit_conference', {'id': page.conference.id}) }}">Modifier
+                                ✍🏼</a>
+                            <a href="{{ path('remove_conference', {'id': page.conference.id}) }}">Supprimer 🗑️</a>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
-            {% if is_granted('ROLE_ADMIN') %}
-                <div class="form-group">
-                    <a class="mr-3" href="{{ path('edit_conference', {'id': i.conference.id}) }}">Modifier</a>
-                    <a href="{{ path('remove_conference', {'id': i.conference.id}) }}">Supprimer 🗑️</a>
-                </div>
-            {% endif %}
         </div>
-    </div>
     {% endfor %}
-
     <ul class="pagination">
         <li class="waves-effect">{{ knp_pagination_render(pagination) }}</li>
     </ul>
