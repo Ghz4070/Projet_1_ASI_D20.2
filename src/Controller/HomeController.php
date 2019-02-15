@@ -21,10 +21,10 @@ class HomeController extends Controller
     /**
      * @Route("/", name="home")
      */
-    public function showConf(ConferenceRepository $conferenceRepository, Request $request)
+    public function showConf(ConferenceRepository $conferenceRepository, VoteRepository $voteRepository ,Request $request)
     {
         $conf = $conferenceRepository->findAll();
-
+        $vote = $voteRepository->avg();
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $conf, /* query NOT result */
@@ -34,6 +34,7 @@ class HomeController extends Controller
 
         return $this->render('home/index.html.twig', [
             'pagination' => $pagination,
+            'avg' => $vote
         ]);
     }
 
