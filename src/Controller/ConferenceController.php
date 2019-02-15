@@ -110,4 +110,16 @@ class ConferenceController extends AbstractController
         ]);
 
     }
+
+    /**
+     * @Route("/user/conference/withoutcote", name="conferenceWithoutVote")
+     */
+    public function conferenceWithoutVote(VoteRepository $voteRepository){
+        $usercurrent = $this->getUser();
+        $uservote = $voteRepository->averageWithoutUser($usercurrent);
+        return $this->render('conference/withoutvote.html.twig',[
+            'vote' => $uservote
+        ]);
+
+    }
 }

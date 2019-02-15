@@ -38,11 +38,6 @@ class Conference
      */
     private $votes;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $average;
-
     public function __construct()
     {
         $this->votes = new ArrayCollection();
@@ -120,15 +115,4 @@ class Conference
         return $this;
     }
 
-    public function getAverage(): ?int
-    {
-        return $this->average;
-    }
-
-    public function setAverage(?int $average): self
-    {
-        $this->average = $average;
-
-        return $this;
-    }
 }

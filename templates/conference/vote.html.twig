@@ -16,7 +16,7 @@
                         <td>{{ i.name }}</td>
                         <td>{{ i.description }}</td>
                         <td>{{ i.createdAt|date("d/m/Y") }}</td>
-                        <td>{{ i.scoreAvg|round() }}</td>
+                        <td>{{ i.scoreAvg|round(1,'floor') }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
