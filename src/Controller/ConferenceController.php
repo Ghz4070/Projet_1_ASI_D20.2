@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Conference;
 use App\Form\ConferenceType;
+use App\Repository\UserRepository;
 use App\Repository\VoteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -16,7 +17,7 @@ class ConferenceController extends AbstractController
     /**
      * @Route("/admin/conference", name="conference")
      */
-    public function create(Request $request)
+    public function create(Request $request, \Swift_Mailer $mailer, UserRepository $userRepository)
     {
         $conference = new Conference();
         $form = $this->createForm(ConferenceType::class, $conference);
@@ -26,6 +27,22 @@ class ConferenceController extends AbstractController
             $entityManager->persist($conference);
             $entityManager->flush();
             $this->addFlash('success', 'la conference a bien ete cree !');
+
+            $user = $userRepository->findAll();
+
+            foreach ($user as $value){
+                $message = (new \Swift_Message('Nouvelle conference'))
+                ->setFrom('paiva.raphaelt@gmail.com')
+                ->setTo($value->getEmail())
+                ->setBody('You should see me from the profiler!');
+                $mailer->send($message);
+            }
+
+
+
+
+
+
             return $this->redirectToRoute('home');
         }
 

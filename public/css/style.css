@@ -110,3 +110,13 @@ li, li:before, li:after {
     box-sizing: inherit;
     color: #039be5;
 }
+
+
+/**
+STYLE CSS FOR TEXT AFTER SEARCH
+ */
+
+.search
+{
+    text-align: center;
+}
