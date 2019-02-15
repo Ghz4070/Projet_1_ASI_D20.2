@@ -6,11 +6,13 @@
 
     <div class="container mt-3">
         <form class="pull-right hidden" role="search" id="nav-search-form" method="post" action="{{ path('search') }}">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Tapez votre recherche ici" name="search">
+            <div class="input-field">
+                <i class="material-icons prefix">search</i>
+                <input type="text" id="search" class="validate" name="search">
+                <label for="search" class="center-align">Tapez votre recherche ici</label>
                 <span class="input-group-btn">
                     <div class="center-align">
-                <button type="submit" class="btn black">Rechercher</button>
+                        <button type="submit" class="btn black">Rechercher</button>
                     </div>
               </span>
             </div>
@@ -26,9 +28,10 @@
     {% endif %}
 
     <p class="search">Resultat de la recherche pour "{{ data }}"</p>
+
     {% for i in res %}
         <div class="container">
-            <div class="row mt-3">
+            <div class="row mt-3 mb-3">
                 <div class="col s12 m12">
                     <div class="card white">
                         <div class="card-content white-text">
